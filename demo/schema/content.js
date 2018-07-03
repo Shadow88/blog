@@ -1,0 +1,41 @@
+let mongoose=require("mongoose");
+//分类表结构
+module.exports = new mongoose.Schema({
+    //关联字段-分类
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Category'
+    },
+    //关联字段-用户
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Schema'
+    },
+    //时间
+    addTime:{
+        type:Date,
+        default:new Date()
+    }
+    ,
+   //点击量
+    views:{
+        type:Number,
+        default:0
+    },
+    title:String
+    ,
+    //简介
+    description:{
+        type:String,
+        default:''
+    }
+    ,//内容
+    content:{
+        type:String,
+        default:''
+    },//评论
+    comments:{
+        type:Array,
+        default:[]
+    }
+});

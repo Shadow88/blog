@@ -1,0 +1,13 @@
+<%include layout.ejs%>
+<ol class="breadcrumb">
+    <li><a href="/admin/category">分类编辑</a></li>
+</ol>
+<h3>分类编辑</h3>
+<form role="form"  method="post">
+    <div class="form-group">
+        <label for="name">分类名称:</label>
+        <input type="text" class="form-control" value="<%=category.name%>" id="name" name="name" placeholder="输入分类名称">
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+

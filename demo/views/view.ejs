@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>我的博客</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href='/css/index.css' type="text/css"/>
+  </head>
+  <body>
+<header class="blog-header">
+  <div class="top-bar hidden-sm hidden-xs text-center text-muted ">
+  <div class="container">
+    <div class="row">
+      <div class="row-1 col-md-2"><span>我的博客</span></div>
+      <div class="row-2 col-md-6">
+        <span><a href="/">首页</a></span>
+        <span class="primary"><a target="_blank" href="/skill">技术栈</a></span>
+        <span><input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input" data-mounted="1"></span>
+      </div>
+      <div class="row-3 col-md-4">
+        <span class="btn btn-danger" >写博客</span></div>
+    </div>
+  </div>
+     </div>
+  </div>
+</header>
+
+    <nav >
+      <div class="collapse navbar-collapse" style="overflow: auto;">
+        <ul class="nav nav-tabs">
+
+          <% if(category==''){%>
+          <li role="presentation" class="active"><a href="/">首页</a></li>
+          <%} else {%>
+          <li role="presentation" ><a href="/">首页</a></li>
+          <%}%>
+          <% for(var i in categories){%>
+            <% if(category==categories[i].id){%>
+          <li role="presentation" class="active"><a href="/?category=<%=categories[i].id%>"><%=categories[i].name%></a></li>
+          <%} else{%>
+          <li role="presentation" ><a href="/?category=<%=categories[i].id%>"><%=categories[i].name%></a></li>
+          <%}%>
+            <%}%>
+        </ul>
+      </div>
+    </nav>
+    <main class="main clear">
+      <div class="container">
+        <div class="row">
+          <div class=" col-sm-8">
+            <div class="demo">
+              <div class="ListBox">
+                <h1><%= content.title %></h1>
+                <p class="colDefault">
+                  作者: <span class="colInfo"><%= userInfo.username %></span>
+                  时间: <span class="colInfo"><%=content.addTime%></span>
+                  阅读: <span class="colInfo"><%= content.views %></span>
+                  评论: <span class="colInfo"><%= content.comments.length %></span>
+                </p>
+                <dfn> <p><%= content.content %></p></dfn>
+              </div>
+              <div class="ListBox message">
+                <h3></h3>
+                <p class="textLeft"><strong>评论</strong><span class="em">一共有<em class="messageCount">0</em>条评论</span></p>
+                  <% if(userInfo._id) {%>
+                <p class="textLeft"><%= userInfo.username%></p>
+
+                <p class="textLeft clear">
+                  <input type="hidden" id="contentId" value="<%=content.id%>">
+                <div class="input-group">
+                  <textarea id="messageContent" class="form-control"></textarea>
+                  <div class="input-group-btn">
+                    <button id="messageButton" style="height: 54px" class="btn btn-lg btn-primary submit"type="button">提交</button>
+                  </div>
+                </div>
+                </p>
+                  <%} else{%>
+                <p class="bgDanger btn btn-danger">你还没有登录，请先登录!</p>
+                  <%}%>
+
+
+                <div class="messageList text-center "></div>
+                <!--   <div class="messageList">
+                     <div class="messageBox"><p>还没有留言</p></div>
+                   </div>-->
+              </div>
+              <div class="page">
+                <ul class="pager">
+
+                  <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                  <li> </li>
+
+                  <li class="next"><a href="javascript:;"><span aria-hidden="true">&larr;</span> 下一页</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 col-sm-offset-1">
+            <div class="well">
+              <div class=" mainRight">
+                  <% if (userInfo._id) {%>
+                <div class="rightBox thumbnail" id="userInfo"><!--style="display: none"-->
+                  <div class="title"> <span>用户信息</span></div>
+                  <p><span class="colDark"><%= userInfo.username %></span></p>
+                    <% if (userInfo.isAdmin) {%>
+                  <p><span class="colDanger">你好，管理员</span><a href="/admin">进入后台管理</a></p>
+                    <%} else{ %>
+                  <p><span class="colDanger">你好，欢迎进入博客</span></p>
+                    <%}%>
+                  <p><span class="colDanger"><a href="javascript:;" id="logout" >退出</a></span></p>
+                </div>
+                  <%} else {%>
+
+                <div class="rightBox thumbnail" id="loginBox" ><!--style="display: none"-->
+                  <div class="line text-center"><span class="colDark">登录</span></div>
+                  <div class="input-group input-group-sm line"><span class="input-group-addon colDark">用户名</span><input class="form-control" aria-describedby="sizing-addon1" name="username"   type="text"></div>
+                  <div class="input-group input-group-sm line"><span class="input-group-addon colDark">密码</span><input name="password" class="form-control"    type="password"></div>
+                  <div class="line text-center"><span class="colDark"></span><button>登录</button></div>
+                  <p class="textRight text-center">还没有注册?<a href="javascript:;" class="colMint">马上注册</a></p>
+                  <p class="colWaring textCenter"></p>
+                </div>
+                <div class="rightBox thumbnail" id="regBox" style="display: none">
+                  <div class="line text-center"><span class="colDark">注册</span></div>
+                  <div class="line input-group input-group-sm"><span  class=" input-group-addon colDark">用户名</span><input class="form-control" aria-describedby="sizing-addon1" name="username"  type="text"></div>
+                  <div class="line input-group input-group-sm"><span class="input-group-addon colDark">密码</span><input class="form-control" aria-describedby="sizing-addon1" name="password"   type="password"></div>
+                  <div class="line input-group input-group-sm"><span class="input-group-addon colDark">确认</span><input class="form-control" aria-describedby="sizing-addon1" name="regPassword" type="password"></div>
+                  <div class="line text-center "><span class="colDark"></span><button>注册</button></div>
+                  <p class="textRight text-center">已有账号?<a href="javascript:;" class="colMint">马上登录</a></p>
+                  <p class="colWaring textCenter"></p>
+                </div>
+                  <%}  %>
+                <div class="rightBox thumbnail">
+                  <p>我的博客</p>
+                  <p>博客日志</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </main>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="/lib/jquery-3.3.1.min.js"  type="text/javascript"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.js"  type="text/javascript"></script>
+<script src="/js/index.js"  type="text/javascript"></script>
+<script src="/js/comment.js"  type="text/javascript"></script>
+  </body>
+
+</html>

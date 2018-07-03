@@ -1,0 +1,30 @@
+<%include layout.ejs%>
+<ol class="breadcrumb">
+    <li><a href="/">内容管理首页</a></li>
+    <li><span>内容添加分类</span></li>
+</ol>
+<h3>内容分类列表</h3>
+<form  method="post" >
+    <div class="form-group">
+        <lable for="category"></lable>
+        <select naem="category" id="category" class="form-control">
+            <% for(var i in category){%>
+            <option value="<%= category[i].id %>"><%= category[i].name %></option>
+              <%}%>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="title">内容标题:</label>
+        <input type="text" class="form-control"  id="title" name="title" placeholder="输入内容">
+    </div>
+    <div class="form-group">
+        <label for="description">内容描述:</label>
+        <input type="text" class="form-control"  id="description" name="description" placeholder="输入描述">
+    </div> <div class="form-group">
+        <label for="content">内容正文:</label>
+        <textarea type="text" class="form-control" id="content" name="content" placeholder="输入正文"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+

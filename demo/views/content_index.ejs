@@ -1,0 +1,39 @@
+<%include layout.ejs%>
+<ol class="breadcrumb">
+    <li><a href="/">内容管理首页</a></li>
+    <li><span>内容分类列表</span></li>
+</ol>
+<h3>内容分类列表</h3>
+<table class="table table-striped table-hover">
+    <tr class="warning">
+        <th>ID</th>
+        <th>标题</th>
+        <th>分类名称</th>
+        <th>描述</th>
+        <th>正文</th>
+        <th>作者</th>
+        <th>时间</th>
+        <th>阅读量</th>
+        <th>操作</th>
+    </tr>
+    <% for(var i in content) {%>
+    <tr>
+        <td><%= content[i]._id %></td>
+        <td><%= content[i].title %></td>
+        <td><%= content[i].name %></td>
+        <td><%= content[i].description %></td>
+        <td><%= content[i].content %></td>
+        <td><%= content[i].schema.username %></td>
+        <td><%=content.addTime%></td>
+        <td><%= content[i].views %></td>
+        <td>
+            <a href="/admin/content/edit?id=<%= content[i]._id %>">修改</a>
+            <a href="/admin/content/delete?id=<%=content[i]._id %>">删除</a>
+        </td>
+    </tr>
+    <% }%>
+
+</table>
+
+
+<%include page.ejs%>

@@ -1,0 +1,66 @@
+/**通用样式**/
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #000;
+}
+/**********头部样式******/
+.blog-header{
+padding-top: 5px;
+}
+.blog-header .top-bar{
+    height: 56px;
+    border-bottom: 1px solid #fff;
+    line-height: 56px;
+}
+.blog-header .top-bar .container .row .row-2 span{
+    padding-left: 20px;
+
+}
+.row-2 span,.row-1 span ,.row-3 span{
+    cursor: pointer;
+}
+.row .row-2 .primary,.row-1{
+    color: #00B7FF;
+    font-size: 14px;
+}
+.search-input{
+    width: 160px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 40px;
+    border: #cccccc 1px ;
+    padding: 0 40px 0 20px;
+    background-color: #eee;
+    -webkit-transition:width 0.5s;
+    box-sizing: border-box;
+}
+
+/**内容区域**/
+.main .container{
+    padding-top: 20px;
+}
+
+/**左边内容区域**/
+.main .container .row .col-sm-8 .demo .ListBox{
+    border-bottom: 2px solid #ddd;
+    padding: 5px;
+}
+.main .container .row .col-sm-8 .demo .ListBox h1,.function{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.main .container .row .col-sm-8 .demo .ListBox .colDefault,.main .container .row .col-sm-8 .demo .ListBox .glyphicon-tent{
+    color: #9d9d9d;
+    letter-spacing: 2px;
+}
+.main .container .row .col-sm-8 .demo .ListBox .glyphicon-tent{
+    overflow: hidden;
+    letter-spacing: 4px;
+    text-indent: 2rem;
+}
+/**右边内容区域**/
+.main .container .row .col-sm-3 .well .mainRight .rightBox .line{
+    padding: 3px;
+}
