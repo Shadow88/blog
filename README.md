@@ -1,2 +1,2 @@
-![blog]('blog/demo/public/images/1.png');
+![blog]('demo/public/images/1.png');
 
